@@ -1,0 +1,3 @@
+- Run it locally with `python3 -m http.server 8000`
+- Visible at `http://localhost:8000/index.html`
+- Messy, but usable for two midterms in a week
