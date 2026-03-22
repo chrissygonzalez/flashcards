@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <select>
+        <option value="os.md">Operating Systems</option>
+        <option value="languages.md" selected>Programming Languages</option>
+    </select>
+    <div id="flashcard-container">
+        <div id="status">
+            <span id="counter">0 / 0</span>
+        </div>
+        <div id="flashcard">
+            <div id="card-content">Loading...</div>
+        </div>
+        <div id="buttons">
+            <button id="prev-btn">Previous</button>
+            <button id="next-btn">Next</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

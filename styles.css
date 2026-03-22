@@ -1,0 +1,132 @@
+#flashcard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 300;
+}
+
+#flashcard {
+    width: 500px;
+    height: 350px;
+    background-color: #ffffff;
+    border: 2px solid #007bff;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s;
+}
+
+#flashcard:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#card-content {
+    font-size: 18px;
+    line-height: 1.5;
+    padding: 20px 30px 20px 20px;
+    color: #333;
+}
+
+#card-content.question {
+    text-align: center;
+    font-weight: 600;
+}
+
+#card-content.answer {
+    text-align: left;
+    width: 100%;
+}
+
+#card-content.answer.no-list {
+    padding-left: 36px;
+}
+
+#card-content ul,
+#card-content ol {
+    text-align: left;
+    list-style-position: outside;
+    margin: 0;
+}
+
+/* #card-content li {
+    margin-bottom: 16px;
+} */
+
+#card-content strong {
+    font-weight: 700;
+}
+
+#card-content code {
+    font-family: monospace;
+    background-color: #f4f4f4;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+#buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#status {
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+#file-selector {
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#file-selector label {
+    font-size: 14px;
+}
+
+#file-selector select {
+    padding: 6px 10px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+body {
+    background-color: #0e3156;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
