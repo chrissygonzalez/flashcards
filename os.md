@@ -346,7 +346,7 @@ Answer:
 - **task parallelism**: different tasks distributed across cores
 ---
 Question: What is Amdahl's law?
-Answer: identifies performance gains from adding additional cores to an application with both serial and parallele components
+Answer: identifies performance gains from adding additional cores to an application with both serial and parallel components
 - speedup <= 1 / (S + (1 - S) / N)
 - S = serial portion
 - N = processing cores
@@ -362,3 +362,127 @@ NOTE: number of kernel threads is always <= number of user threads
 ---
 Question: What is implicit threading?
 Answer: Libraries and compiler features that let you not manage threads at all. Examples include thread pools, OpenMP, Grand Central Dispatch
+---
+Question: How do you disable buffering on `stdout`?
+Answer: `setbuf(stdout, NULL);`
+---
+Question: What struct represents the server address for a socket?
+Answer:
+`struct sockaddr_in servAddr;`
+`memset(&servAddr, 0, sizeof(servAddr));`
+`servAddr.sin_family = AF_INET;`
+`servAddr.sin_port = htons(PORT);`
+`servAddr.sin_addr.s_addr = inet_addr("127.0.0.1");`
+---
+Question: How does a client connect to a socket?
+Answer:
+`int clientSock = socket(AF_INET, SOCK_STREAM, 0);`
+`connect(clientSock, (struct sockaddr *)&servAddr, sizeof(servAddr));`
+- can `write()` to socket and then `close(clientSock)` when done
+- to retry connecting, call `socket()` in a loop and `close()` before next round
+---
+Question: How does a server listen to a socket?
+Answer:
+`int serverSock = socket(AF_INET, SOCK_STREAM, 0);`
+`bind(serverSock, (struct sockaddr *)&servAddr, sizeof(servAddr));`
+`listen(serverSock, 1);`
+- then the server must accept a connection from a client
+---
+Question: How does a server accept connection from a client?
+Answer:
+`struct sockaddr_in clientAddr;`
+`socklen_t clientLen = sizeof(clientAddr);`
+`int sessionSock = accept(serverSock, (struct sockaddr *)&clientAddr, &clientLen);`
+- then can `read()` and `close()`
+---
+Question: What are the steps in creating a socket connection?
+Answer:
+Both:
+- declare servAddr struct
+Client:
+- open socket
+- call connect on the socket using servAddr
+Server:
+- open socket
+- bind servAddr to that socket
+- listen to socket
+- declare clientAddr struct
+- accept socket at clientAddr
+---
+Question: What is the function signature for `socket()`?
+Answer: `int socket(int domain, int type, int protocol);`
+---
+Question: What is the function signature for `connect()`?
+Answer: `int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);`
+---
+Question: What is the function signature for `bind()`?
+Answer: `int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);`
+---
+Question: What is the function signature for `listen()`?
+Answer: `int listen(int sockfd, int backlog);`
+---
+Question: What is the function signature for `accept()`?
+Answer: `int accept(int sockfd, struct sockaddr *_Nullable restrict addr, socklen_t *_Nullable restrict addrlen);`
+---
+Question: What headers did sockets use?
+Answer:
+`stdio.h`
+`stdlib.h`
+`unistd.h`
+`sys/wait.h`
+`sys/types.h`
+`sys/socket.h`
+`netinet/in.h`
+`arpa/inet.h`
+`string.h`
+`time.h`
+`stdbool.h`
+---
+Question: What headers did pipes use?
+Answer:
+`stdio.h`
+`stdlib.h`
+`unistd.h`
+`sys/types.h`
+`string.h`
+`time.h`
+`sys/wait.h`
+`ctype.h`
+---
+Question: What headers did shared memory use?
+Answer:
+`stdio.h`
+`stdlib.h`
+`unistd.h`
+`sys/types.h`
+`sys/mman.h`
+`fcntl.h`
+`string.h`
+`time.h`
+`sys/wait.h`
+`ctype.h`
+---
+Question: What headers did forks use?
+Answer:
+`stdio.h`
+`stdlib.h`
+`sys/types.h`
+`unistd.h`
+`sys/wait.h`
+---
+Question: What headers did kernel timekeeping use?
+Answer:
+`linux/init.h`
+`linux/module.h`
+`linux/jiffies.h`
+`linux/ktime.h`
+`linux/timekeeping.h`
+---
+Question: What headers did reading and writing files use?
+Answer:
+`fcntl.h`
+`stdio.h`
+`unistd.h`
+`string.h`
+`stdlib.h`
+`time.h`

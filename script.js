@@ -1,9 +1,7 @@
 let cards = [];
 let currentIndex = 0;
 let showingAnswer = false;
-let currentFile = 'languages.md';
-
-loadCards();
+let currentFile;
 
 function parseMarkdown(text) {
     const blocks = text.split('---').map(b => b.trim()).filter(b => b);
@@ -131,7 +129,9 @@ function updateButtons() {
     document.getElementById('next-btn').disabled = currentIndex === cards.length - 1;
 }
 
-document.querySelector('select').addEventListener('change', (e) => {
+const select = document.querySelector('select');
+currentFile = select.value;
+select.addEventListener('change', (e) => {
     currentFile = e.target.value;
     loadCards();
 })
@@ -159,3 +159,5 @@ document.getElementById('prev-btn').addEventListener('click', () => {
         updateButtons();
     }
 });
+
+loadCards();
